@@ -1,0 +1,17 @@
+declare
+fun {Build D C}
+   fun {Out X D C}
+      case D of
+	 H|T then if H==X then C.1 else {Out X T C.2} end
+      else 'bottom' end
+   end
+in
+   fun {$ X} {Out X D C} end
+end
+
+local F in
+    F = {Build [1 2 3] [5 6 7]}
+    {Browse {F 1}} % Prints ~5
+    {Browse {F 3}} % Prints ~6
+    {Browse {F 4}} % Prints bottom
+end

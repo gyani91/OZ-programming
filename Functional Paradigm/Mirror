@@ -1,0 +1,12 @@
+declare
+fun {Mirror N}
+   local MirrorAux in
+      fun {MirrorAux I A}
+	 if I==0 then A
+	 else {MirrorAux (I div 10) ((A*10)+(I mod 10))} end
+      end
+      {MirrorAux N 0}
+   end
+end
+{Browse {Mirror 1234}}
+	 

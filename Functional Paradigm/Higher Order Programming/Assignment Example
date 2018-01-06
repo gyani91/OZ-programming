@@ -1,0 +1,9 @@
+declare
+fun {M Int}
+  fun {$} Int#{M Int-1} end
+end
+
+Test = {M 5}
+{Browse M}
+{Browse {M 5}}
+{Browse {Test}}

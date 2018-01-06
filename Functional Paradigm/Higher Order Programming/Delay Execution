@@ -1,0 +1,10 @@
+% We can define an statement and pass it to function which decides
+% whether or not to execute it
+
+declare
+proc {IfTrue Cond Stmt}
+   if {Cond} then {Stmt} end
+end
+
+Stmt = proc {$} {Browse 111*111} end
+{IfTrue fun {$} 1<2 end Stmt}

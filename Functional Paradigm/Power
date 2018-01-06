@@ -1,0 +1,13 @@
+declare
+fun {Pow X N}
+   local PowAux in
+      fun {PowAux Y I A}
+	 if I==0 then A
+	 elseif I mod 2==0 then {PowAux Y*Y (I div 2) A}
+	 else {PowAux Y I-1 A*Y} end
+      end
+      {PowAux X N 1}
+   end
+end
+
+{Browse {Pow 3 5}}

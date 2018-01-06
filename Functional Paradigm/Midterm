@@ -1,0 +1,37 @@
+declare
+proc {Split L L1 L2}
+   case L of
+      nil then L1=nil L2=nil
+   [] H|nil then L1=[H] L2=nil
+   [] H1|H2|T then
+      local M1 M2 in
+         L1=H1|M1
+         L2=H2|M2
+         {Split T M1 M2}
+      end
+   end
+end
+
+declare
+fun {Reduction L A B C D}
+   local Add L1 L2 M1 M2 M3 M4 in
+      {Split L L1 L2}
+      {Split L1 M1 M3}
+      {Split L2 M2 M4}
+      fun {Add List Acc}
+	 case List
+	 of H|T then {Add T H+Acc}
+	 [] nil then Acc
+	 end
+      end
+      A*{Add M1 0} + B*{Add M2 0} + C*{Add M3 0} + D*{Add M4 0}
+   end
+end
+
+local L1 L2 in
+   {Split [1 2 3 4 5 6 7] L1 L2}
+   {Browse L1}
+   {Browse L2}
+end
+
+{Browse {Reduction [1 1 1 1 1 1 1 1 1 1 1 ] 1 2 3 4}}

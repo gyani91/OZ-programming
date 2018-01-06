@@ -1,0 +1,9 @@
+% Instantiation is when a function is returned as an output
+declare
+fun {MakeAdd A}
+   fun {$ X} X+A end
+end
+
+Add5 = {MakeAdd 5}
+
+{Browse {Add5 100}}

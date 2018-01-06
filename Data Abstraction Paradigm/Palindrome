@@ -1,0 +1,66 @@
+declare
+class Sequence
+   attr s
+   meth init
+      s:=nil
+   end
+   meth isEmpty($)
+      @s==nil
+   end
+   meth first($)
+      @s.1
+   end
+   meth last($)
+      {Nth @s {Length @s}}
+   end
+   meth insertFirst(X)
+      s:=X|@s
+   end
+   meth insertLast(X)
+      s:={Append @s X|nil}
+   end
+   meth removeFirst
+      s:=@s.2
+   end
+   meth removeLast
+      local Traverse in
+	 fun {Traverse X A}
+	    if X.2==nil then s:=A.2|nil
+	    else {Traverse X.2 A|X.1} end
+	 end
+	 if {Not @s==nil} then {Traverse @s 1} end
+      end
+      %local L=@l Len={Length @l}-1 in
+      %  l:=nil
+      % for I in Len..1;~1 do
+      %   l:={Nth L I}|@l
+      %end
+      %end
+   end
+end
+
+fun {Palindrome Xs}
+   S = {New Sequence init}
+   fun {Check}
+      if {S isEmpty($)} then true
+      else
+	 if {S first($)}=={S last($)} then
+	    {S removeFirst}
+	    {S removeLast}
+            {Check}
+         else false end
+      end
+   end
+in
+   for I in Xs do
+      {S insertFirst(I)}
+   end
+   {Check}
+end
+
+{Browse {Palindrome ['s' 'd' 'a']}}
+{Browse {Palindrome ['s' 'd' 'a' 'd' 's']}}
+{Browse {Palindrome [1 2 3 3 2 1]}}
+{Browse {Palindrome [1 2 3 2 1]}}
+{Browse {Palindrome nil}}
+{Browse {Palindrome ['s']}}

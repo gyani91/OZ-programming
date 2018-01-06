@@ -1,0 +1,9 @@
+declare
+fun {FlattenList L}
+   case L
+   of H|T then {Append {FlattenList H} {FlattenList T}}
+   [] nil then nil
+   [] M then M|nil end
+end
+
+{Browse {FlattenList [1 [2] [[3]]]}}

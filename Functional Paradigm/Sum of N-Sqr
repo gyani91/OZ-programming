@@ -1,0 +1,12 @@
+declare
+fun {SumNSqr N}
+   local SumAux in
+      fun {SumAux I A}
+	 if I==0 then A
+	 else {SumAux I-1 A+I*I} end
+      end
+      {SumAux N 0}
+   end
+end
+
+{Browse {SumNSqr 3}}

@@ -1,0 +1,28 @@
+declare
+class Figure
+end
+
+class Circle
+   attr x y r
+   meth draw
+      {Browse 'Circle'}
+   end
+end
+
+class Line
+   attr x1 y1 x2 y2
+   meth draw
+      {Browse 'Line'}
+   end
+end
+
+class CompoundFigure
+   attr figlist
+   meth draw
+      for F in @figlist do
+	 {F draw}
+      end
+   end
+end
+
+	 

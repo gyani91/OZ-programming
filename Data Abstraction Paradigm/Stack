@@ -1,0 +1,58 @@
+declare
+class Stack
+   attr s    
+   meth init s:=nil end
+   meth size($) {Length @s} end
+   meth isEmpty($) @s==nil end
+   meth top($)
+      if {self isEmpty($)} then
+	 raise topEmptyStack end
+      else @s.1 end
+   end
+   meth push(X) s:=X|@s end
+   meth pop($)
+       if {self isEmpty($)} then
+	  raise popEmptyStack end
+       else local X in
+	       X=@s.1
+	       s:=@s.2
+	       X
+	    end
+       end
+   end
+end
+
+class Queue
+   attr q
+   meth init q:=nil end
+   meth size($) {Length @q} end
+   meth isEmpty($) @q==nil end
+   meth first($)
+      if {self isEmpty($)} then
+	 raise frontQueueEmpty end
+      else @q.1 end
+   end
+   meth enqueue(X) q:={Append @q X|nil} end
+   meth dequeue($)
+       if {self isEmpty($)} then
+	  raise badException('E') end
+       else local X in
+	       X=@q.1
+	       q:=@q.2
+	       X
+	    end
+       end
+   end
+end
+
+local S={New Stack init}  in
+   {Browse {S size($)}}
+   {Browse {S isEmpty($)}}
+   %{Browse {S top($)}}
+   {S push(8)}
+   {Browse {S size($)}}
+   {Browse {S isEmpty($)}}
+   {Browse {S top($)}}
+   {Browse {S pop($)}}
+   %{Browse {S pop($)}}
+end

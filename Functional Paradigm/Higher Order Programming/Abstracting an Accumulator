@@ -1,0 +1,12 @@
+% The argument U is an accumulator hidden inside FoldL
+
+declare
+fun {FoldL L F U}
+   case L
+   of nil then U
+   [] H|T then {FoldL T F {F U H}}
+   end
+end
+
+S = {FoldL [5 6 7] fun {$ X Y} X+Y end 0}
+{Browse S}

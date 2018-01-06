@@ -1,0 +1,21 @@
+declare
+fun {NumLeaves Tree}
+   case Tree of
+      btree(1:X left:L right:R) then {NumLeaves L}+{NumLeaves R}
+   [] leaf then 1
+   end
+end
+
+declare
+fun {IsBalanced Tree}
+   case Tree of
+      btree(1:X left:L right:R) then {IsBalanced L} andthen {IsBalanced R} andthen {Number.abs {NumLeaves L}-{NumLeaves R}}<2
+   [] leaf then true end
+end
+
+{Browse {IsBalanced btree(1:a left:leaf
+                          right:btree(1:b left:leaf
+                                      right:btree(1:c left:leaf right:leaf)))}}
+{Browse {IsBalanced btree(1:a left:leaf
+                          right:btree(1:b left:leaf
+                                      right:leaf))}}

@@ -1,0 +1,37 @@
+declare
+fun {NaiveRabbit N}
+  if N == 0 then 2
+  elseif N == 1 then 4
+  elseif N == 2 then 8
+  else {NaiveRabbit N-1}+{NaiveRabbit N-2}+{NaiveRabbit N-3} end
+end
+
+{Browse {NaiveRabbit 6}}
+
+declare
+fun {Rabbit N}
+   local Aux in
+      fun {Aux N X A1 A2 A3}
+	 if X==N then A3
+	 else {Aux N X+1 A2 A3 A1+A2+A3}
+	 end
+      end
+      {Aux N 2 2 4 8}
+   end
+end
+
+{Browse {Rabbit 6}}
+
+declare
+fun {Measure N}
+   Local T1 T2 T3 X1 X2 in
+   T1 = {Time.time} % {Link ['x-oz://boot/Time']}.1.getReferenceTime
+   X1 = {NaiveRabbit N}
+   T2 = {Time.time} % {GetRefTime}
+   X2 = {Rabbit N}
+   T3 = {Time.time}
+   (T2-T1)-(T3-T2)
+end
+
+{Browse {Measure 20}}
+   

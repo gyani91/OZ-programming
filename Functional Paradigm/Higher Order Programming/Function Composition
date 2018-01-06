@@ -1,0 +1,11 @@
+% We take two functions as input and return their composition
+declare
+fun {Compose F G}
+   fun {$ X} {F {G X}} end
+end
+
+Fnew = {Compose fun {$ X} X*X end fun {$ X} X+1 end}
+
+{Browse {Fnew 2}}
+
+{Browse {{Compose Fnew Fnew} 2}}

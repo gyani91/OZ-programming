@@ -1,0 +1,8 @@
+declare
+fun {Flat D}
+   case D
+   of H|T then {Flat H}
+   [] M then M end
+end
+
+{Browse {Flat [[[2]] 3]}}

@@ -1,0 +1,13 @@
+declare
+fun {Prime N}
+   local PrimeAux in
+    fun {PrimeAux I A}
+       if A==0 then false
+       elseif A==1 then true
+       elseif (I mod A)==0 then false
+       else {PrimeAux I A-1} end
+    end
+    {PrimeAux N N-1}
+   end
+end
+{Browse {Prime 1}}

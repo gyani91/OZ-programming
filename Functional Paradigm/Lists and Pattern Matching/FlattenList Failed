@@ -1,0 +1,19 @@
+declare
+fun {FlattenList L}
+   local FlatAux in
+      fun {FlatAux C A}
+	 local Flat in
+	    fun {Flat D}
+	       case D
+	       of H|T then {Flat H}
+	       [] M then M end
+	    end
+	    if C==nil then A
+	    else {FlatAux C.2 {Append A {Flat C.1}|nil}} end
+	 end
+      end
+      {FlatAux L nil}
+   end
+end
+
+{Browse {FlattenList [1 [2] [[3]]]}}

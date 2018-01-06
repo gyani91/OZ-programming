@@ -1,0 +1,12 @@
+declare
+fun {Fact N}
+   local FactAux in
+      fun {FactAux I A}
+	 if I==0 then A
+	 else {FactAux I-1 I*A} end
+      end
+      {FactAux N 1}
+   end
+end
+
+{Browse {Fact 4}}

@@ -1,0 +1,11 @@
+declare
+fun {SumD N}
+   local SumAux in
+      fun {SumAux I A}
+	 if I==0 then A
+	 else {SumAux (I div 10) (A + (I mod 10))} end
+      end
+      {SumAux N 0}
+   end
+end
+{Browse {SumD 1235}}

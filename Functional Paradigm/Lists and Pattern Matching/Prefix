@@ -1,0 +1,8 @@
+declare
+fun {Prefix L1 L2}
+   if L1==nil then true
+   elseif L1.1\=L2.1 then false
+   else {Prefix L1.2 L2.2} end
+end
+
+{Browse {Prefix [a b c] [a b c d e]}}

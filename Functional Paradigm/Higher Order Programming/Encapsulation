@@ -1,0 +1,10 @@
+% We can hide a value inside a function
+declare
+fun {Zero} 0 end
+fun {Inc H}
+   N = {H}+1 in
+   fun {$} N end
+end
+
+Three = {Inc {Inc {Inc Zero}}}
+{Browse {Three}}

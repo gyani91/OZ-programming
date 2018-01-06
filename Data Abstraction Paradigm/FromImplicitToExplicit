@@ -1,0 +1,12 @@
+declare
+fun {Reverse L}
+   local X in
+      {NewCell nil X}
+      for E in L do
+	 X:=E|@X
+      end
+      @X
+   end
+end
+
+{Browse {Reverse [1 2 3 4]}}

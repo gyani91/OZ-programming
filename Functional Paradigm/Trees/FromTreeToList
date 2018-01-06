@@ -1,0 +1,15 @@
+declare
+fun {FromTreeToList Tree}
+   case Tree of
+      btree(1:V left:L right:R) then {Append {Append {FromTreeToList L} [V]} {FromTreeToList R}}
+   [] leaf then nil
+   end
+end
+
+{Browse {FromTreeToList btree(
+    1:42
+    left:btree(
+            1:24
+            left:btree(1:12 left:leaf right: leaf)
+            right:leaf)
+    right:leaf)}}

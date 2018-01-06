@@ -1,0 +1,12 @@
+declare
+fun {Fact N}
+   local FactAux L1=nil in
+      fun {FactAux X C A}
+	 if X==C+1 then nil
+	 else A*X | {FactAux X+1 C A*X} end
+      end
+      {FactAux 1 N 1}
+   end
+end
+
+{Browse {Fact 4}}

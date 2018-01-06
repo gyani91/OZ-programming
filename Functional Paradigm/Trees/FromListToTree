@@ -1,0 +1,23 @@
+declare
+fun {FromListToTree List}
+   local Insert Interator in
+      fun {Insert Tree X}
+	 case Tree of
+	    leaf then btree(1:X left:leaf right:leaf)
+	 [] btree(1:Root left:L right:R) then
+	    if X>Root then btree(1:Root left:L right:{Insert R X})
+	    elseif X<Root then btree(1:Root left:{Insert L X} right:R)
+	    else Tree end
+	 end
+      end
+      fun {Interator Tree List}
+	 case List of
+	    nil then Tree
+	 [] H|T then {Interator {Insert Tree H} T} end
+      end
+      {Interator leaf List}
+   end
+end
+
+{Browse {FromListToTree [42 24 12]}}
+{Browse {FromListToTree [42 42 24 12 28 51 49 77]}}
